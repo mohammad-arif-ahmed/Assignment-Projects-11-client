@@ -1,25 +1,29 @@
-// src/components/Navbar.jsx
 
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import toast from "react-hot-toast";
 
 const Navbar = () => {
-    // Use the custom hook to access user state and logout function
     const { user, logOut, loading } = useAuth(); 
 
-    // Links for the navigation bar
+    const activeLinkClass = ({ isActive }) => 
+        isActive ? 'font-bold text-primary border-b-2 border-primary' : '';
+
     const navLinks = (
         <>
-            <li><NavLink to="/">Home</NavLink></li>
-            <li><NavLink to="/contests">All Contests</NavLink></li>
-            {/* Conditional Links based on user status */}
+            {/* Standard Public Routes */}
+            <li><NavLink to="/" className={activeLinkClass}>Home</NavLink></li>
+            <li><NavLink to="/contests" className={activeLinkClass}>All Contests</NavLink></li>
+            <li><NavLink to="/winners" className={activeLinkClass}>Winners</NavLink></li>
+            
+            {/* Conditional Routes */}
             {user ? (
-                <li><NavLink to="/dashboard">Dashboard</NavLink></li>
+                // Show Dashboard if user is logged in
+                <li><NavLink to="/dashboard" className={activeLinkClass}>Dashboard</NavLink></li>
             ) : (
-                <li><NavLink to="/register">Register</NavLink></li>
+                // Show Register if user is logged out (or new)
+                <li><NavLink to="/register" className={activeLinkClass}>Register</NavLink></li>
             )}
-            <li><NavLink to="/winners">Winners</NavLink></li>
         </>
     );
 
@@ -34,6 +38,12 @@ const Navbar = () => {
                 toast.error('Logout failed.');
             });
     };
+
+    // If loading, you can return a simple loading indicator
+    if (loading) {
+        // but ensure components handle 'user' being null temporarily.
+    }
+
 
     return (
         <div className="navbar bg-base-100 shadow-md">
@@ -73,7 +83,7 @@ const Navbar = () => {
                                 </div>
                             </div>
                             <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                                <li><Link to="/dashboard/profile">{user.displayName || 'Profile'}</Link></li>
+                                <li><Link to="/dashboard">{user.displayName || 'Dashboard'}</Link></li>
                                 <li><a onClick={handleLogOut}>Logout</a></li>
                             </ul>
                         </div>
