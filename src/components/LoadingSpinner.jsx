@@ -1,0 +1,10 @@
+
+const LoadingSpinner = () => {
+    return (
+        <div className="flex justify-center items-center py-20 min-h-[40vh]">
+            <span className="loading loading-spinner loading-lg text-primary"></span>
+        </div>
+    );
+};
+
+export default LoadingSpinner;

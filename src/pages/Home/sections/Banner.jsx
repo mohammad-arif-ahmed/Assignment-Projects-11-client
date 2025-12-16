@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const bannerImage = "https://i.ibb.co/L9wY4xV/banner-placeholder.jpg"; 
+const bannerImage = "https://i.ibb.co.com/B534W5fT/coading.png"; 
 
 const Banner = () => {
     return (
