@@ -1,33 +1,39 @@
-
-import { useQuery } from "@tanstack/react-query";
-import useAuth from "./useAuth";
-import useAxiosSecure from "./useAxiosSecure";
+import { useQuery } from '@tanstack/react-query';
+import useAuth from './useAuth'; 
+import useAxiosSecure from './useAxiosSecure'; 
 
 const useUserRole = () => {
-    const { user, loading } = useAuth();
-    const axiosSecure = useAxiosSecure(); 
-    
-    // Check if the user is authenticated and not currently loading auth state
-    const isReady = !!user && !loading;
+    const { user, loading } = useAuth(); 
+    const axiosSecure = useAxiosSecure();
 
-    // Use TanStack Query to fetch the user's role from the backend
-    const { data: role = 'contestant', isLoading: isRoleLoading } = useQuery({
-        // 1. Query Key: Should be unique and include user email
+    const { data: userRole = 'Participant', isLoading: isRoleLoading, isError } = useQuery({
         queryKey: ['userRole', user?.email], 
         
-        // 2. Enable Query: Only run if the user is logged in
-        enabled: isReady, 
+        enabled: !loading && !!user?.email, 
         
-        // 3. Query Function: Call the secure API
         queryFn: async () => {
-            // This API endpoint (e.g., /users/role/:email) should be created in your backend
+            if (!user?.email) {
+                return 'Participant';
+            }
+            
             const res = await axiosSecure.get(`/users/role/${user.email}`); 
-            return res.data.role; // Assuming the backend returns { role: 'admin' }
+            
+            return res.data.role; 
+        },
+        onError: (err) => {
+            console.error("Error fetching user role:", err);
+            return 'Participant';
         }
     });
 
-    // We return the role, and the loading state of the role fetch
-    return [role, isRoleLoading];
+    return {
+        userRole,
+        isLoading: isRoleLoading || loading, 
+        isAdmin: userRole === 'Admin',
+        isCreator: userRole === 'Creator',
+        isParticipant: userRole === 'Participant',
+        isError,
+    };
 };
 
 export default useUserRole;
