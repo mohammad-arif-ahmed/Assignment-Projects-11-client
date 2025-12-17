@@ -24,6 +24,9 @@ import ContestSubmissions from "../pages/dashboard/ContestSubmissions.jsx";
 import MyParticipations from "../pages/dashboard/MyParticipations";
 import WinningContests from "../pages/dashboard/WinningContests";
 import ContestantProfile from "../pages/dashboard/ContestantProfile";
+import MyParticipatedContests from "../pages/dashboard/Contestant/MyParticipatedContests.jsx";
+import MyWinningContests from "../pages/dashboard/Contestant/MyWinningContests.jsx";
+import MyProfile from "../pages/dashboard/Common/MyProfile.jsx";
 
 
 export const router = createBrowserRouter([
@@ -92,6 +95,18 @@ export const router = createBrowserRouter([
                 path: "profile",
                 element: <ContestantProfile />,
             },
+            {
+                path: "my-participated",
+                element: <MyParticipatedContests />,
+            },
+            {
+                path: "my-winning",
+                element: <MyWinningContests />,
+            },
+            {
+                path: "my-profile",
+                element: <MyProfile />,
+            }
 
 
         ],
