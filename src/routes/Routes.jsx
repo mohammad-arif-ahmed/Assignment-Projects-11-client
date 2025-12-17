@@ -16,8 +16,9 @@ import ManageContests from "../pages/dashboard/ManageContests";
 // Creator
 import AddContest from "../pages/dashboard/AddContest";
 import MyContests from "../pages/dashboard/MyContests";
-import ContestSubmitted from "../pages/dashboard/ContestSubmitted";
+import ContestSubmitted from "../pages/dashboard/ContestSubmitted.jsx";
 import UpdateContest from '../pages/dashboard/UpdateContest';
+import ContestSubmissions from "../pages/dashboard/ContestSubmissions.jsx";
 
 // Contestant
 import MyParticipations from "../pages/dashboard/MyParticipations";
@@ -68,6 +69,10 @@ export const router = createBrowserRouter([
             {
                 path: "contest-submitted",
                 element: <ContestSubmitted />,
+            },
+            {
+                path: "contest-submissions",
+                element: <ContestSubmissions />
             },
             {
                 path: "update-contest/:id",
