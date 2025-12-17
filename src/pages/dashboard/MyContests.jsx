@@ -87,7 +87,9 @@ const MyContests = () => {
                                     </td>
                                     <td>{contest.participantsCount || 0}</td>
                                     <td className="space-x-2">
-                                        <button className="btn btn-sm btn-info text-white">Edit</button>
+                                        <Link to={`/dashboard/update-contest/${contest._id}`}>
+                                            <button className="btn btn-sm btn-info text-white">Edit</button>
+                                        </Link>
                                         <button
                                             onClick={() => handleDelete(contest._id, contest.name, contest.status)}
                                             className="btn btn-sm btn-error text-white"

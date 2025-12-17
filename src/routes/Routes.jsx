@@ -10,13 +10,14 @@ import DashboardLayout from "../layouts/DashboardLayout";
 import AdminStats from "../pages/dashboard/AdminDashboard/AdminStats"; // AdminStats Component
 import AdminContestReview from "../pages/dashboard/AdminDashboard/AdminContestReview"; // Pending Contests Component
 
-import ManageUsers from "../pages/dashboard/ManageUsers"; 
-import ManageContests from "../pages/dashboard/ManageContests"; 
+import ManageUsers from "../pages/dashboard/ManageUsers";
+import ManageContests from "../pages/dashboard/ManageContests";
 
 // Creator
 import AddContest from "../pages/dashboard/AddContest";
 import MyContests from "../pages/dashboard/MyContests";
 import ContestSubmitted from "../pages/dashboard/ContestSubmitted";
+import UpdateContest from '../pages/dashboard/UpdateContest';
 
 // Contestant
 import MyParticipations from "../pages/dashboard/MyParticipations";
@@ -35,26 +36,26 @@ export const router = createBrowserRouter([
             { path: "/register", element: <Register /> },
         ],
     },
-    
+
     {
         path: "/dashboard",
         element: <PrivateRoute><DashboardLayout /></PrivateRoute>,
         children: [
-            
+
             // --------------------- 1. Admin Routes ---------------------
             {
-                path: "admin-stats", 
-                element: <AdminStats />, 
+                path: "admin-stats",
+                element: <AdminStats />,
             },
             {
-                path: "contest-review", 
-                element: <AdminContestReview />, 
+                path: "contest-review",
+                element: <AdminContestReview />,
             },
             {
                 path: "manage-users",
                 element: <ManageUsers />,
             },
-            
+
             // --------------------- 2. Creator Routes ---------------------
             {
                 path: "add-contest",
@@ -68,7 +69,11 @@ export const router = createBrowserRouter([
                 path: "contest-submitted",
                 element: <ContestSubmitted />,
             },
-            
+            {
+                path: "update-contest/:id",
+                element: <UpdateContest />,
+            },
+
             // --------------------- 3. Contestant Routes ---------------------
             {
                 path: "my-participations",
@@ -79,11 +84,11 @@ export const router = createBrowserRouter([
                 element: <WinningContests />,
             },
             {
-                path: "profile", 
+                path: "profile",
                 element: <ContestantProfile />,
             },
-            
-            
+
+
         ],
     },
 ]);
