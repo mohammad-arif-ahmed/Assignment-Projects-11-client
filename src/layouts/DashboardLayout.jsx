@@ -1,12 +1,14 @@
 import { NavLink, Outlet } from 'react-router-dom';
-import useUserRole from '../hooks/useUserRole'; 
-import { 
-    FaChartBar, FaUsers, FaTasks, 
-    FaPlusSquare, FaListAlt, FaCheckCircle, 
-    FaTrophy, 
-    FaHome, 
-} from 'react-icons/fa'; 
-import LoadingSpinner from '../components/LoadingSpinner'; 
+import useUserRole from '../hooks/useUserRole';
+import { MdOutlineManageAccounts, MdOutlineGroup } from "react-icons/md";
+import {
+    FaChartBar, FaUsers, FaTasks,
+    FaPlusSquare, FaListAlt, FaCheckCircle,
+    FaTrophy,
+    FaHome,
+} from 'react-icons/fa';
+import LoadingSpinner from '../components/LoadingSpinner';
+
 
 const DashboardLayout = () => {
     const { userRole, isLoading } = useUserRole();
@@ -28,9 +30,9 @@ const DashboardLayout = () => {
                         <>
                             {/* ------- Admin Links ------- */}
                             <li>
-                                <NavLink 
-                                    to="/dashboard/admin-stats" 
-                                    className={({ isActive }) => 
+                                <NavLink
+                                    to="/dashboard/admin-stats"
+                                    className={({ isActive }) =>
                                         isActive ? 'bg-gray-700 text-primary font-semibold' : 'hover:bg-gray-700'
                                     }
                                 >
@@ -38,33 +40,34 @@ const DashboardLayout = () => {
                                 </NavLink>
                             </li>
                             <li>
-                                <NavLink 
-                                    to="/dashboard/manage-users" 
-                                    className={({ isActive }) => 
+                                <NavLink
+                                    to="/dashboard/manage-users"
+                                    className={({ isActive }) =>
                                         isActive ? 'bg-gray-700 text-primary font-semibold' : 'hover:bg-gray-700'
                                     }
                                 >
                                     <FaUsers /> Manage Users
                                 </NavLink>
                             </li>
+
                             <li>
-                                <NavLink 
-                                    to="/dashboard/contest-review" 
-                                    className={({ isActive }) => 
-                                        isActive ? 'bg-gray-700 text-primary font-semibold' : 'hover:bg-gray-700'
-                                    }
+                                <NavLink
+                                    to="/dashboard/manage-contests"
+                                    className={({ isActive }) => isActive ? 'bg-blue-600 text-white p-2 rounded' : 'text-gray-300 p-2'}
                                 >
-                                    <FaTasks /> Pending Contests Review
+                                    <MdOutlineManageAccounts />
+                                    Pending Contests Review
                                 </NavLink>
                             </li>
+
                         </>
                     ) : isCreator ? (
                         <>
                             {/* ------- Creator Links ------- */}
                             <li>
-                                <NavLink 
-                                    to="/dashboard/add-contest" 
-                                    className={({ isActive }) => 
+                                <NavLink
+                                    to="/dashboard/add-contest"
+                                    className={({ isActive }) =>
                                         isActive ? 'bg-gray-700 text-primary font-semibold' : 'hover:bg-gray-700'
                                     }
                                 >
@@ -72,9 +75,9 @@ const DashboardLayout = () => {
                                 </NavLink>
                             </li>
                             <li>
-                                <NavLink 
-                                    to="/dashboard/my-created-contests" 
-                                    className={({ isActive }) => 
+                                <NavLink
+                                    to="/dashboard/my-created-contests"
+                                    className={({ isActive }) =>
                                         isActive ? 'bg-gray-700 text-primary font-semibold' : 'hover:bg-gray-700'
                                     }
                                 >
@@ -82,9 +85,9 @@ const DashboardLayout = () => {
                                 </NavLink>
                             </li>
                             <li>
-                                <NavLink 
-                                    to="/dashboard/contest-submissions" 
-                                    className={({ isActive }) => 
+                                <NavLink
+                                    to="/dashboard/contest-submissions"
+                                    className={({ isActive }) =>
                                         isActive ? 'bg-gray-700 text-primary font-semibold' : 'hover:bg-gray-700'
                                     }
                                 >
@@ -96,9 +99,9 @@ const DashboardLayout = () => {
                         <>
                             {/* ------- Participant Links (Default User) ------- */}
                             <li>
-                                <NavLink 
-                                    to="/dashboard/my-participated-contests" 
-                                    className={({ isActive }) => 
+                                <NavLink
+                                    to="/dashboard/my-participated-contests"
+                                    className={({ isActive }) =>
                                         isActive ? 'bg-gray-700 text-primary font-semibold' : 'hover:bg-gray-700'
                                     }
                                 >
@@ -108,15 +111,15 @@ const DashboardLayout = () => {
                             {/* <li><NavLink to="/dashboard/profile"> ... </NavLink></li> */}
                         </>
                     )}
-                    
+
                     {/* --- Divider --- */}
                     <div className="divider my-4 bg-gray-700 h-px"></div>
-                    
+
                     {/* ------- Common Links (Back to Home) ------- */}
                     <li>
-                        <NavLink 
-                            to="/" 
-                            className={({ isActive }) => 
+                        <NavLink
+                            to="/"
+                            className={({ isActive }) =>
                                 isActive ? 'bg-gray-700 text-primary font-semibold' : 'hover:bg-gray-700'
                             }
                         >
