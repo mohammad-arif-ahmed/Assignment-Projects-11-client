@@ -44,10 +44,14 @@ export const router = createBrowserRouter([
             { path: "/login", element: <Login /> },
             { path: "/register", element: <Register /> },
             {
-                path: "contest/:id", // ইউআরএল এ আইডি অনুযায়ী কাজ করবে
+                path: "contest/:id",
                 element: <ContestDetails />,
-                // সার্ভার থেকে ডাটা লোড করার জন্য
-                loader: ({ params }) => fetch(`http://localhost:5000/contests/${params.id}`)
+                loader: ({ params }) => {
+                    const url = import.meta.env.MODE === 'development'
+                        ? `http://localhost:5000/contests/${params.id}`
+                        : `https://contesthub-server-amber.vercel.app/contests/${params.id}`;
+                    return fetch(url);
+                },
             },
 
         ],
