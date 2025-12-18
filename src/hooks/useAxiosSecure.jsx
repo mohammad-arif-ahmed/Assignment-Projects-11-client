@@ -7,7 +7,10 @@ import toast from "react-hot-toast";
 
 // 1. Create the Axios Secure instance
 const axiosSecure = axios.create({
-    baseURL: 'http://localhost:5000', 
+    baseURL: import.meta.env.MODE === 'development' 
+        ? 'http://localhost:5000' 
+        : 'https://contesthub-server-amber.vercel.app/', 
+    withCredentials: true
 });
 
 const useAxiosSecure = () => {
