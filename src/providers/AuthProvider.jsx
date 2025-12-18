@@ -17,8 +17,12 @@ import axios from 'axios';
 export const AuthContext = createContext(null);
 
 
+const baseURL = import.meta.env.MODE === 'development' 
+    ? 'http://localhost:5000' 
+    : 'https://contesthub-server-amber.vercel.app/'; 
+
 export const axiosPublic = axios.create({
-    baseURL: 'http://localhost:5000', 
+    baseURL: baseURL,
 });
 
 const AuthProvider = ({ children }) => {
