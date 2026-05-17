@@ -1,29 +1,53 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
+import React from 'react';
 
-import './index.css'
+import ReactDOM from 'react-dom/client';
+
+import './index.css';
 
 import {
   QueryClient,
   QueryClientProvider,
-} from "@tanstack/react-query";
+} from '@tanstack/react-query';
 
 import {
   createBrowserRouter,
   RouterProvider,
-} from "react-router-dom";
+} from 'react-router-dom';
 
-import AuthProvider from './providers/AuthProvider'
+import AuthProvider from './providers/AuthProvider';
 
+import MainLayout from './layouts/MainLayout';
+
+import Home from './pages/Home';
+
+
+// react query client
 const queryClient = new QueryClient();
 
+
+// router
 const router = createBrowserRouter([
+
   {
     path: "/",
-    element: <h1>Hello ContestHub</h1>,
+
+    element: <MainLayout />,
+
+    children: [
+
+      {
+        path: "/",
+
+        element: <Home />,
+      },
+
+    ],
   },
+
 ]);
 
+
+// render app
 ReactDOM.createRoot(
   document.getElementById('root')
 ).render(
@@ -40,5 +64,6 @@ ReactDOM.createRoot(
 
     </QueryClientProvider>
 
-  </React.StrictMode>,
-)
+  </React.StrictMode>
+
+);
