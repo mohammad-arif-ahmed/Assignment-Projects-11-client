@@ -2,33 +2,49 @@ const Footer = () => {
 
   return (
 
-    <footer className="bg-base-300 mt-10">
+    <footer className="footer footer-center p-10 bg-base-200 text-base-content mt-16">
 
-      <div className="footer footer-center p-10 text-base-content">
+      <aside>
 
-        <aside>
+        <h2 className="text-3xl font-bold">
 
-          <h2 className="text-3xl font-bold">
+          ContestHub
 
-            ContestHub
+        </h2>
 
-          </h2>
+        <p>
 
-          <p>
+          Creative Contest Platform
 
-            Creative Contest Platform
+        </p>
 
-          </p>
+        <p>
 
-          <p>
+          Copyright © 2026 - All rights reserved
 
-            Copyright © 2026
+        </p>
 
-          </p>
+      </aside>
 
-        </aside>
+      <nav>
 
-      </div>
+        <div className="grid grid-flow-col gap-4">
+
+          <a href="https://facebook.com">
+
+            Facebook
+
+          </a>
+
+          <a href="https://linkedin.com">
+
+            LinkedIn
+
+          </a>
+
+        </div>
+
+      </nav>
 
     </footer>
 

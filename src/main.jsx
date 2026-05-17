@@ -1,87 +1,26 @@
-import React from 'react';
+import React from "react";
 
-import ReactDOM from 'react-dom/client';
+import ReactDOM from "react-dom/client";
 
-import './index.css';
+import {
+  RouterProvider,
+} from "react-router-dom";
 
 import {
   QueryClient,
   QueryClientProvider,
-} from '@tanstack/react-query';
+} from "@tanstack/react-query";
 
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from 'react-router-dom';
+import "./index.css";
 
-import AuthProvider from './providers/AuthProvider';
+import router from "./routes/Routes";
 
-import MainLayout from './layouts/MainLayout';
+import AuthProvider from "./providers/AuthProvider";
 
-import Home from './pages/Home';
-
-import Login from './pages/Login';
-
-import Register from './pages/Register';
-
-import PrivateRoute from './routes/PrivateRoute';
-
-
-// query client
 const queryClient = new QueryClient();
 
-
-// router
-const router = createBrowserRouter([
-
-  {
-    path: "/",
-
-    element: <MainLayout />,
-
-    children: [
-
-      {
-        path: "/",
-
-        element: <Home />,
-      },
-
-      {
-        path: "/login",
-
-        element: <Login />,
-      },
-
-      {
-        path: "/register",
-
-        element: <Register />,
-      },
-
-      {
-        path: "/dashboard",
-
-        element: (
-          <PrivateRoute>
-
-            <h1 className="text-5xl py-20">
-              Dashboard
-            </h1>
-
-          </PrivateRoute>
-        ),
-      },
-
-    ],
-  },
-
-]);
-
-
-// render
 ReactDOM.createRoot(
-  document.getElementById('root')
+  document.getElementById("root")
 ).render(
 
   <React.StrictMode>

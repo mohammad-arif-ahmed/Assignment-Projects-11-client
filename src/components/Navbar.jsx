@@ -1,48 +1,64 @@
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
-import useAuth from "../hooks/useAuth";
 import ThemeToggle from "./ThemeToggle";
 
 const Navbar = () => {
 
-  const {
-    user,
-    logoutUser,
-  } = useAuth();
-
-  const handleLogout = async () => {
-
-    await logoutUser();
-
-  };
-
   const links = (
+
     <>
+
       <li>
+
         <NavLink to="/">
+
           Home
+
         </NavLink>
+
       </li>
 
       <li>
+
         <NavLink to="/all-contests">
+
           All Contests
+
         </NavLink>
+
       </li>
 
       <li>
+
         <NavLink to="/leaderboard">
+
           Leaderboard
+
         </NavLink>
+
       </li>
+
+      <li>
+
+        <NavLink to="/about">
+
+          About
+
+        </NavLink>
+
+      </li>
+
     </>
+
   );
 
   return (
 
-    <div className="bg-base-100 shadow-md sticky top-0 z-50">
+    <div className="navbar bg-base-100 shadow-md sticky top-0 z-50">
 
-      <div className="navbar max-w-7xl mx-auto">
+      <div className="w-11/12 mx-auto flex justify-between">
+
+        {/* navbar start */}
 
         <div className="navbar-start">
 
@@ -60,7 +76,7 @@ const Navbar = () => {
 
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-10 mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
             >
 
               {links}
@@ -69,16 +85,18 @@ const Navbar = () => {
 
           </div>
 
-          <Link
+          <NavLink
             to="/"
             className="text-2xl font-bold"
           >
 
             ContestHub
 
-          </Link>
+          </NavLink>
 
         </div>
+
+        {/* navbar center */}
 
         <div className="navbar-center hidden lg:flex">
 
@@ -90,88 +108,20 @@ const Navbar = () => {
 
         </div>
 
-        <div className="navbar-end">
+        {/* navbar end */}
+
+        <div className="navbar-end gap-3">
+
           <ThemeToggle />
 
+          <NavLink
+            to="/login"
+            className="btn btn-primary"
+          >
 
-          {
-            user ? (
+            Login
 
-              <div className="dropdown dropdown-end">
-
-                <div
-                  tabIndex={0}
-                  role="button"
-                  className="avatar"
-                >
-
-                  <div className="w-10 rounded-full">
-
-                    <img src={user.photoURL} />
-
-                  </div>
-
-                </div>
-
-                <ul
-                  tabIndex={0}
-                  className="menu menu-sm dropdown-content bg-base-100 rounded-box z-10 mt-3 w-52 p-2 shadow"
-                >
-
-                  <li>
-
-                    <p>
-                      {user.displayName}
-                    </p>
-
-                  </li>
-
-                  <li>
-
-                    <Link to="/dashboard">
-                      Dashboard
-                    </Link>
-
-                  </li>
-
-                  <li>
-
-                    <button onClick={handleLogout}>
-                      Logout
-                    </button>
-
-                  </li>
-
-                </ul>
-
-              </div>
-
-            ) : (
-
-              <div className="flex gap-2">
-
-                <Link
-                  to="/login"
-                  className="btn btn-outline btn-sm"
-                >
-
-                  Login
-
-                </Link>
-
-                <Link
-                  to="/register"
-                  className="btn btn-primary btn-sm"
-                >
-
-                  Register
-
-                </Link>
-
-              </div>
-
-            )
-          }
+          </NavLink>
 
         </div>
 
