@@ -2,7 +2,14 @@ import { NavLink } from "react-router-dom";
 
 import ThemeToggle from "./ThemeToggle";
 
+import useAuth from "../hooks/useAuth";
+
 const Navbar = () => {
+
+  const {
+    user,
+    logoutUser,
+  } = useAuth();
 
   const links = (
 
@@ -47,6 +54,22 @@ const Navbar = () => {
         </NavLink>
 
       </li>
+
+      {
+        user && (
+
+          <li>
+
+            <NavLink to="/dashboard">
+
+              Dashboard
+
+            </NavLink>
+
+          </li>
+
+        )
+      }
 
     </>
 
@@ -114,14 +137,41 @@ const Navbar = () => {
 
           <ThemeToggle />
 
-          <NavLink
-            to="/login"
-            className="btn btn-primary"
-          >
+          {
+            user ? (
 
-            Login
+              <div className="flex items-center gap-3">
 
-          </NavLink>
+                <img
+                  src={user.photoURL}
+                  alt="user"
+                  className="w-10 h-10 rounded-full border"
+                />
+
+                <button
+                  onClick={logoutUser}
+                  className="btn btn-primary"
+                >
+
+                  Logout
+
+                </button>
+
+              </div>
+
+            ) : (
+
+              <NavLink
+                to="/login"
+                className="btn btn-primary"
+              >
+
+                Login
+
+              </NavLink>
+
+            )
+          }
 
         </div>
 

@@ -11,6 +11,7 @@ import About from "../pages/About";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import ErrorPage from "../pages/ErrorPage";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
 
@@ -22,6 +23,23 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
 
     children: [
+      {
+        path: "/dashboard",
+
+        element: (
+
+          <PrivateRoute>
+
+            <h2 className="text-5xl text-center mt-20">
+
+              Dashboard Private Page
+
+            </h2>
+
+          </PrivateRoute>
+
+        ),
+      },
 
       {
         path: "/",
