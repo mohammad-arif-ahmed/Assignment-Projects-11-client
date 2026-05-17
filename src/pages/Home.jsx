@@ -1,47 +1,56 @@
-import PopularContests from "../components/PopularContests";
+import { useQuery } from "@tanstack/react-query";
+
+import ContestCard from "../components/ContestCard";
+
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const Home = () => {
 
+  const axiosSecure = useAxiosSecure();
+
+  const { data: contests = [] } = useQuery({
+
+    queryKey: ["popular-contests"],
+
+    queryFn: async () => {
+
+      const res = await axiosSecure.get("/contests/popular");
+
+      return res.data;
+
+    },
+
+  });
+
   return (
 
-    <div className="py-10">
+    <div>
 
       {/* hero section */}
 
-      <div className="hero min-h-[70vh] rounded-3xl bg-base-300">
+      <div className="hero min-h-[70vh] rounded-3xl overflow-hidden mt-10 bg-base-200">
 
         <div className="hero-content text-center">
 
           <div className="max-w-2xl">
 
-            <h1 className="text-5xl md:text-6xl font-bold leading-tight">
+            <h1 className="text-5xl md:text-7xl font-bold">
 
-              Discover Amazing Creative Contests
+              Discover Creative Contests
 
             </h1>
 
             <p className="py-6 text-lg">
 
-              Join design, writing, gaming,
-              and business contests from around the world.
+              Join amazing competitions and win exciting prizes.
 
             </p>
 
-            <div className="flex flex-col md:flex-row gap-3 justify-center">
-
-              <input
-                type="text"
-                placeholder="Search contest type..."
-                className="input input-bordered w-full md:w-96"
-              />
-
-              <button className="btn btn-primary">
-
-                Search
-
-              </button>
-
-            </div>
+            <input
+              type="text"
+              placeholder="Search contests..."
+              className="input input-bordered w-full max-w-md"
+            />
 
           </div>
 
@@ -51,7 +60,40 @@ const Home = () => {
 
       {/* popular contests */}
 
-      <PopularContests />
+      <div className="mt-20">
+
+        <div className="text-center mb-12">
+
+          <h2 className="text-4xl font-bold">
+
+            Popular Contests
+
+          </h2>
+
+          <p className="mt-4">
+
+            Most participated contests right now
+
+          </p>
+
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+          {
+            contests.map(contest => (
+
+              <ContestCard
+                key={contest._id}
+                contest={contest}
+              />
+
+            ))
+          }
+
+        </div>
+
+      </div>
 
     </div>
 
