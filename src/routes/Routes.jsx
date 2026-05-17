@@ -12,6 +12,7 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import ErrorPage from "../pages/ErrorPage";
 import PrivateRoute from "./PrivateRoute";
+import ContestDetails from "../pages/ContestDetails";
 
 const router = createBrowserRouter([
 
@@ -35,6 +36,20 @@ const router = createBrowserRouter([
               Dashboard Private Page
 
             </h2>
+
+          </PrivateRoute>
+
+        ),
+
+      },
+      {
+        path: "/contest/:id",
+
+        element: (
+
+          <PrivateRoute>
+
+            <ContestDetails />
 
           </PrivateRoute>
 
