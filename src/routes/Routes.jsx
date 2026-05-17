@@ -4,6 +4,10 @@ import {
 
 import MainLayout from "../layouts/MainLayout";
 
+import DashboardLayout from "../layouts/DashboardLayout";
+
+import PrivateRoute from "./PrivateRoute";
+
 import Home from "../pages/Home";
 import AllContests from "../pages/AllContests";
 import Leaderboard from "../pages/Leaderboard";
@@ -11,11 +15,13 @@ import About from "../pages/About";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import ErrorPage from "../pages/ErrorPage";
-import PrivateRoute from "./PrivateRoute";
 import ContestDetails from "../pages/ContestDetails";
+
+import AddContest from "../pages/dashboard/AddContest";
 
 const router = createBrowserRouter([
 
+  // MAIN WEBSITE ROUTES
   {
     path: "/",
 
@@ -24,37 +30,6 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
 
     children: [
-      {
-        path: "/dashboard",
-
-        element: (
-
-          <PrivateRoute>
-
-            <h2 className="text-5xl text-center mt-20">
-
-              Dashboard Private Page
-
-            </h2>
-
-          </PrivateRoute>
-
-        ),
-
-      },
-      {
-        path: "/contest/:id",
-
-        element: (
-
-          <PrivateRoute>
-
-            <ContestDetails />
-
-          </PrivateRoute>
-
-        ),
-      },
 
       {
         path: "/",
@@ -90,6 +65,45 @@ const router = createBrowserRouter([
         path: "/register",
 
         element: <Register />,
+      },
+
+      {
+        path: "/contest/:id",
+
+        element: (
+
+          <PrivateRoute>
+
+            <ContestDetails />
+
+          </PrivateRoute>
+
+        ),
+      },
+
+    ],
+  },
+
+  // DASHBOARD ROUTES
+  {
+    path: "/dashboard",
+
+    element: (
+
+      <PrivateRoute>
+
+        <DashboardLayout />
+
+      </PrivateRoute>
+
+    ),
+
+    children: [
+
+      {
+        path: "/dashboard/add-contest",
+
+        element: <AddContest />,
       },
 
     ],
