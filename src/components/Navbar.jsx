@@ -1,6 +1,19 @@
 import { Link, NavLink } from "react-router-dom";
 
+import useAuth from "../hooks/useAuth";
+
 const Navbar = () => {
+
+  const {
+    user,
+    logoutUser,
+  } = useAuth();
+
+  const handleLogout = async () => {
+
+    await logoutUser();
+
+  };
 
   const links = (
     <>
@@ -21,12 +34,6 @@ const Navbar = () => {
           Leaderboard
         </NavLink>
       </li>
-
-      <li>
-        <NavLink to="/about">
-          About
-        </NavLink>
-      </li>
     </>
   );
 
@@ -36,7 +43,6 @@ const Navbar = () => {
 
       <div className="navbar max-w-7xl mx-auto">
 
-        {/* mobile */}
         <div className="navbar-start">
 
           <div className="dropdown">
@@ -73,7 +79,6 @@ const Navbar = () => {
 
         </div>
 
-        {/* desktop */}
         <div className="navbar-center hidden lg:flex">
 
           <ul className="menu menu-horizontal px-1 gap-2">
@@ -84,20 +89,86 @@ const Navbar = () => {
 
         </div>
 
-        {/* right */}
-        <div className="navbar-end gap-2">
+        <div className="navbar-end">
 
-          <button className="btn btn-outline btn-sm">
+          {
+            user ? (
 
-            Login
+              <div className="dropdown dropdown-end">
 
-          </button>
+                <div
+                  tabIndex={0}
+                  role="button"
+                  className="avatar"
+                >
 
-          <button className="btn btn-primary btn-sm">
+                  <div className="w-10 rounded-full">
 
-            Register
+                    <img src={user.photoURL} />
 
-          </button>
+                  </div>
+
+                </div>
+
+                <ul
+                  tabIndex={0}
+                  className="menu menu-sm dropdown-content bg-base-100 rounded-box z-10 mt-3 w-52 p-2 shadow"
+                >
+
+                  <li>
+
+                    <p>
+                      {user.displayName}
+                    </p>
+
+                  </li>
+
+                  <li>
+
+                    <Link to="/dashboard">
+                      Dashboard
+                    </Link>
+
+                  </li>
+
+                  <li>
+
+                    <button onClick={handleLogout}>
+                      Logout
+                    </button>
+
+                  </li>
+
+                </ul>
+
+              </div>
+
+            ) : (
+
+              <div className="flex gap-2">
+
+                <Link
+                  to="/login"
+                  className="btn btn-outline btn-sm"
+                >
+
+                  Login
+
+                </Link>
+
+                <Link
+                  to="/register"
+                  className="btn btn-primary btn-sm"
+                >
+
+                  Register
+
+                </Link>
+
+              </div>
+
+            )
+          }
 
         </div>
 

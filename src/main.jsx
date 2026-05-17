@@ -20,8 +20,14 @@ import MainLayout from './layouts/MainLayout';
 
 import Home from './pages/Home';
 
+import Login from './pages/Login';
 
-// react query client
+import Register from './pages/Register';
+
+import PrivateRoute from './routes/PrivateRoute';
+
+
+// query client
 const queryClient = new QueryClient();
 
 
@@ -41,13 +47,39 @@ const router = createBrowserRouter([
         element: <Home />,
       },
 
+      {
+        path: "/login",
+
+        element: <Login />,
+      },
+
+      {
+        path: "/register",
+
+        element: <Register />,
+      },
+
+      {
+        path: "/dashboard",
+
+        element: (
+          <PrivateRoute>
+
+            <h1 className="text-5xl py-20">
+              Dashboard
+            </h1>
+
+          </PrivateRoute>
+        ),
+      },
+
     ],
   },
 
 ]);
 
 
-// render app
+// render
 ReactDOM.createRoot(
   document.getElementById('root')
 ).render(
