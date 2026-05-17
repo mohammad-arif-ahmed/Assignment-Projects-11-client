@@ -1,10 +1,12 @@
+import PopularContests from "../components/PopularContests";
+
 const Home = () => {
 
   return (
 
     <div className="py-10">
 
-      {/* hero */}
+      {/* hero section */}
 
       <div className="hero min-h-[70vh] rounded-3xl bg-base-300">
 
@@ -46,6 +48,10 @@ const Home = () => {
         </div>
 
       </div>
+
+      {/* popular contests */}
+
+      <PopularContests />
 
     </div>
 

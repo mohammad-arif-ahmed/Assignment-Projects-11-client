@@ -1,6 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 
 import useAuth from "../hooks/useAuth";
+import ThemeToggle from "./ThemeToggle";
 
 const Navbar = () => {
 
@@ -90,6 +91,8 @@ const Navbar = () => {
         </div>
 
         <div className="navbar-end">
+          <ThemeToggle />
+
 
           {
             user ? (
