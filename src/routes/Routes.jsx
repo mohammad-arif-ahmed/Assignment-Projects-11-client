@@ -18,6 +18,7 @@ import ErrorPage from "../pages/ErrorPage";
 import ContestDetails from "../pages/ContestDetails";
 
 import AddContest from "../pages/dashboard/AddContest";
+import MyCreatedContests from "../pages/dashboard/MyCreatedContests";
 
 const router = createBrowserRouter([
 
@@ -81,6 +82,7 @@ const router = createBrowserRouter([
         ),
       },
 
+
     ],
   },
 
@@ -104,6 +106,11 @@ const router = createBrowserRouter([
         path: "/dashboard/add-contest",
 
         element: <AddContest />,
+      },
+      {
+        path: "/dashboard/my-contests",
+
+        element: <MyCreatedContests />,
       },
 
     ],
