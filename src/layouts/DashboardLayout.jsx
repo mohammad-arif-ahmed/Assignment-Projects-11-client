@@ -64,6 +64,15 @@ const DashboardLayout = () => {
             </NavLink>
 
           </li>
+          <li>
+
+            <NavLink to="/dashboard/participated-contests">
+
+              Participated Contests
+
+            </NavLink>
+
+          </li>
 
           <li>
 

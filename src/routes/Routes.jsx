@@ -20,6 +20,7 @@ import ContestDetails from "../pages/ContestDetails";
 import AddContest from "../pages/dashboard/AddContest";
 import MyCreatedContests from "../pages/dashboard/MyCreatedContests";
 import ManageContests from "../pages/dashboard/ManageContests";
+import MyParticipatedContests from "../pages/dashboard/MyParticipatedContests";
 
 const router = createBrowserRouter([
 
@@ -117,6 +118,11 @@ const router = createBrowserRouter([
         path: "/dashboard/manage-contests",
 
         element: <ManageContests />,
+      },
+      {
+        path: "/dashboard/participated-contests",
+
+        element: <MyParticipatedContests />,
       },
 
     ],
