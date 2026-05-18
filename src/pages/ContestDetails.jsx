@@ -2,13 +2,19 @@ import { useParams } from "react-router-dom";
 
 import { useQuery } from "@tanstack/react-query";
 
+import Swal from "sweetalert2";
+
 import useAxiosSecure from "../hooks/useAxiosSecure";
+
+import useAuth from "../hooks/useAuth";
 
 const ContestDetails = () => {
 
   const { id } = useParams();
 
   const axiosSecure = useAxiosSecure();
+
+  const { user } = useAuth();
 
   const { data: contest = {} } = useQuery({
 
@@ -27,9 +33,11 @@ const ContestDetails = () => {
   });
 
   const {
+    _id,
     name,
     image,
     description,
+    price,
     prizeMoney,
     participantsCount,
     contestType,
@@ -39,6 +47,57 @@ const ContestDetails = () => {
 
   const contestEnded =
     new Date(deadline) < new Date();
+
+  // register contest
+  const handleRegister = async () => {
+
+    try {
+
+      const paymentData = {
+
+        contestId: _id,
+
+        contestName: name,
+
+        participantEmail: user.email,
+
+        price,
+
+        transactionId:
+          "tran_" + Date.now(),
+
+      };
+
+      await axiosSecure.post(
+        "/payments",
+        paymentData
+      );
+
+      Swal.fire({
+
+        icon: "success",
+
+        title: "Contest Registered Successfully",
+
+        timer: 1500,
+
+        showConfirmButton: false,
+
+      });
+
+    } catch (error) {
+
+      Swal.fire({
+
+        icon: "error",
+
+        title: error.message,
+
+      });
+
+    }
+
+  };
 
   return (
 
@@ -125,6 +184,7 @@ const ContestDetails = () => {
           <div className="mt-8">
 
             <button
+              onClick={handleRegister}
               disabled={contestEnded}
               className="btn btn-primary"
             >

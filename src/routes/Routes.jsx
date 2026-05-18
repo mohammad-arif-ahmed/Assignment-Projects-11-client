@@ -22,7 +22,9 @@ import MyCreatedContests from "../pages/dashboard/MyCreatedContests";
 import ManageContests from "../pages/dashboard/ManageContests";
 import MyParticipatedContests from "../pages/dashboard/MyParticipatedContests";
 import MyWinningContests from "../pages/dashboard/MyWinningContests";
+import AdminRoute from "./AdminRoute";
 
+import CreatorRoute from "./CreatorRoute";
 const router = createBrowserRouter([
 
   // MAIN WEBSITE ROUTES
@@ -108,7 +110,15 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/add-contest",
 
-        element: <AddContest />,
+        element: (
+
+          <CreatorRoute>
+
+            <AddContest />
+
+          </CreatorRoute>
+
+        ),
       },
       {
         path: "/dashboard/my-contests",
@@ -118,7 +128,15 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/manage-contests",
 
-        element: <ManageContests />,
+        element: (
+
+          <AdminRoute>
+
+            <ManageContests />
+
+          </AdminRoute>
+
+        ),
       },
       {
         path: "/dashboard/participated-contests",
