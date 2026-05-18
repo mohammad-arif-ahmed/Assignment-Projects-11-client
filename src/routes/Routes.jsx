@@ -21,6 +21,7 @@ import AddContest from "../pages/dashboard/AddContest";
 import MyCreatedContests from "../pages/dashboard/MyCreatedContests";
 import ManageContests from "../pages/dashboard/ManageContests";
 import MyParticipatedContests from "../pages/dashboard/MyParticipatedContests";
+import MyWinningContests from "../pages/dashboard/MyWinningContests";
 
 const router = createBrowserRouter([
 
@@ -123,6 +124,11 @@ const router = createBrowserRouter([
         path: "/dashboard/participated-contests",
 
         element: <MyParticipatedContests />,
+      },
+      {
+        path: "/dashboard/winning-contests",
+
+        element: <MyWinningContests />,
       },
 
     ],
